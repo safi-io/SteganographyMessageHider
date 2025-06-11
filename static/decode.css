@@ -1,0 +1,518 @@
+/* Universal adjustments for a cleaner base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; /* Enhanced font stack */
+    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Softer, more modern gradient */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Keep overflow hidden for particle effect */
+    position: relative;
+    color: #333; /* Default text color for better contrast with light backgrounds */
+}
+
+/* Particle adjustments for subtlety */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Ensure particles are behind the main container */
+}
+
+.particle {
+    position: absolute;
+    width: 4px; /* Smaller particles */
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1); /* Even more subtle */
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite; /* Slower, smoother float */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 0.7;
+    }
+    /* More movement, subtle opacity change */
+}
+
+/* Go Back Button Styling */
+.go-back-btn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: rgba(255, 255, 255, 0.15); /* Frosted glass look */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px; /* Rounded corners */
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none; /* Remove underline for anchor tag */
+    transition: all 0.3s ease;
+    z-index: 20; /* Ensure it's above other elements */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.go-back-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.go-back-btn i {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Container refinements for a single-column layout (decode page) */
+.container {
+    background: rgba(255, 255, 255, 0.08); /* Lighter frosted glass */
+    backdrop-filter: blur(20px); /* Slightly less blur */
+    border-radius: 24px; /* Slightly less rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Thinner, more subtle border */
+    padding: 2.5rem 3.5rem; /* Adjusted padding for single column layout */
+    max-width: 650px; /* Adjusted max-width for a more compact, centered design */
+    width: 95%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    animation: slideIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother animation curve */
+    position: relative;
+    z-index: 10;
+    display: flex; /* Use flexbox for vertical stacking */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    gap: 2rem; /* Gap between sections */
+    min-height: 400px; /* Adjusted min-height for content */
+    text-align: center; /* Center text within the container */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98); /* Less drastic initial scale */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header (Title & Subtitle) */
+.header {
+    margin-bottom: 0.5rem; /* Reduced margin */
+}
+
+.title {
+    font-size: 2.8rem; /* Consistent title size */
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Form Section for input elements */
+.form-section {
+    width: 100%; /* Take full width of container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Gap between form elements */
+}
+
+.form-group {
+    margin-bottom: 0; /* Remove extra margin as gap handles it */
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+    text-align: center; /* Center labels for single column */
+}
+
+.form-group input[type="file"] {
+    display: none; /* Hide default input */
+}
+
+.custom-file-upload {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    width: 100%; /* Ensure it takes full width */
+    max-width: 350px; /* Limit width for aesthetics */
+    margin: 0 auto; /* Center it */
+}
+
+.custom-file-upload:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.custom-file-upload i {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center; /* Center file name */
+}
+
+.btn-decode-page { /* Specific class for decode button */
+    width: 100%;
+    max-width: 350px; /* Limit width for aesthetics */
+    padding: 1.2rem 1.8rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); /* Distinct gradient for decode button */
+    margin: 0 auto; /* Center the button */
+}
+
+.btn-decode-page:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-decode-page:active {
+    transform: translateY(-1px);
+}
+
+.btn-decode-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease-in-out;
+}
+
+.btn-decode-page:hover::before {
+    left: 100%;
+}
+
+.btn-decode-page::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.btn-decode-page:hover::after {
+    width: 250px;
+    height: 250px;
+}
+
+.message-box {
+    background: rgba(0, 0, 0, 0.3); /* Darker background for messages */
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-top: 1rem; /* Adjust margin-top */
+    font-size: 0.95rem;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(10px);
+    width: 100%;
+    max-width: 450px; /* Limit width */
+    margin-left: auto; /* Center it */
+    margin-right: auto; /* Center it */
+    text-align: left; /* Message text can be left-aligned */
+}
+
+.message-box.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message-box.success {
+    background: linear-gradient(45deg, #28a745, #218838);
+}
+
+.message-box.error {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+}
+
+.message-box.info { /* Added info state */
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.message-box i {
+    font-size: 1.2rem;
+}
+
+/* Result Section for decoded message display */
+.result-section {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-height: 180px; /* Ensure result area has height */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05); /* Inner shadow */
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 100%; /* Take full width of container */
+}
+
+.result-section h3 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.decoded-message-box { /* New class for the decoded message content */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Darker background for message display */
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    word-wrap: break-word; /* Ensure long messages wrap */
+    min-height: 80px; /* Minimum height for the message box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left; /* Align message text to left */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px; /* Slightly smaller */
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3); /* Thinner border */
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s ease-in-out infinite; /* Slightly faster spin */
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(3.5); /* Slightly smaller ripple effect */
+        opacity: 0;
+    }
+}
+
+/* --- Responsive design adjustments --- */
+@media (max-width: 1024px) {
+    .go-back-btn {
+        top: 1.5rem;
+        left: 1.5rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .go-back-btn i {
+        font-size: 1rem;
+    }
+
+    .container {
+        max-width: 580px; /* Adjusted max-width */
+        padding: 2rem 3rem; /* Adjusted padding */
+        gap: 1.8rem;
+        min-height: 380px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .custom-file-upload, .btn-decode-page {
+        max-width: 300px;
+    }
+
+    .message-box {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .go-back-btn {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .go-back-btn i {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 1.8rem 2.5rem;
+        max-width: 480px; /* Adjusted max-width */
+        gap: 1.5rem;
+        min-height: auto; /* Allow height to adjust */
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .custom-file-upload, .btn-decode-page {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .message-box {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .result-section h3 {
+        font-size: 1.6rem;
+    }
+
+    .decoded-message-box {
+        padding: 1.2rem;
+        font-size: 1rem;
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .go-back-btn {
+        top: 0.8rem;
+        left: 0.8rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .go-back-btn i {
+        font-size: 0.8rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+        max-width: 380px; /* Adjusted max-width */
+        gap: 1.2rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .custom-file-upload, .btn-decode-page {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+    }
+
+    .message-box {
+        font-size: 0.75rem;
+        padding: 0.7rem 1rem;
+    }
+
+    .result-section h3 {
+        font-size: 1.4rem;
+    }
+
+    .decoded-message-box {
+        padding: 1rem;
+        font-size: 0.9rem;
+        min-height: 50px;
+    }
+}
