@@ -70,15 +70,16 @@ http://127.0.0.1:5000
 ``` bash
 steganrory/
 ├── static/
-│   ├── css/
-│   └── js/
+│   ├── index.css
+│   ├── encode.css
+│   ├── decode.css
 ├── templates/
 │   └── index.html
+│   └── decode.html
+│   └── encode.html
 ├── uploads/             # Temporary image storage
-├── app.py               # Main Flask application
-├── steganography.py     # Encoding/decoding logic
+├── app.py               # Main Flask application & Encoding/decoding logic
 ├── README.md
-└── requirements.txt
 ```
 ## 🔐 Security
 
