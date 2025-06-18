@@ -2,7 +2,7 @@
 
 > 🎓 *4th Semester Information Security Project – Image Steganography Tool*
 
-**Steganography Message Hider** is a web-based steganography tool that allows you to hide and extract secret messages within images. With a clean and responsive user interface powered by HTML, CSS, and JavaScript, and a secure backend built in Python, Steganrory makes message concealment simple, private, and elegant.
+**Steganography Message Hider** is a web-based steganography tool that allows you to hide and extract secret messages within images. With a clean and responsive user interface powered by HTML, CSS, and JavaScript, and a secure backend built in Python, Steganography makes message concealment simple, private, and elegant.
 
 ---
 
