@@ -9,13 +9,11 @@ OUTPUT_FOLDER = 'output'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-
 # === Steganography Logic ===
 
 def stego_encode(image_path, message, output_path):
     img = Image.open(image_path)
 
-    # Convert image to RGB (strip alpha channel if present)
     if img.mode != 'RGB':
         img = img.convert('RGB')
 
@@ -52,7 +50,6 @@ def stego_encode(image_path, message, output_path):
 
     encoded.save(output_path, format='PNG')  # Always save as PNG
 
-
 def stego_decode(image_path):
     img = Image.open(image_path)
 
@@ -81,13 +78,11 @@ def stego_decode(image_path):
 
     return ''.join(chars)
 
-
 # === Routes ===
 
 @app.route('/')
 def home():
     return render_template('index.html')
-
 
 @app.route('/encode', methods=['GET'])
 def encode_page():
@@ -125,7 +120,6 @@ def handle_encode():
 def decode_page():
     return render_template('decode.html')
 
-
 @app.route('/decode', methods=['POST'])
 def handle_decode():
     image_file = request.files['image']
@@ -135,7 +129,6 @@ def handle_decode():
 
     hidden_message = stego_decode(input_path)
     return jsonify({'message': hidden_message})
-
 
 # === Run App ===
 if __name__ == '__main__':
