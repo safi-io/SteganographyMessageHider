@@ -60,18 +60,20 @@ This is repeated across many pixels to embed the full message bit by bit.
 ## 🖼️ Interface Previews
 
 ### 🏠 Home Page
-This the the page that welcomes you when you start the application.
+This the the page that welcomes you when you start the application(Steganography Studio).
 ![Home Page](screenshots/homepage.png)
 
 ### ✏️ Encoding Page
 On this page, You can upload the picture, and write the text you want to hide in the image.
-For Example
-Image: Pakistan Flag
-Text: Pakistan is my Country.
+#### For Example
+- Image: Pakistan Flag
+- Text: Pakistan is my Country.
 ![Encoding Page](screenshots/encoding.png)
 
 ### 📖 Decoding Page
 This page gives you the ability to decode the message by uploading the image.
+#### Decoded Text:
+- Pakistan is my Country.
 ![Decoding Page](screenshots/decoding.png)
 
 ---
