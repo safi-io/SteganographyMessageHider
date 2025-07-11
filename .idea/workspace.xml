@@ -59,7 +59,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -96,7 +96,7 @@
       <workItem from="1751136167439" duration="4000" />
       <workItem from="1751222784846" duration="17000" />
       <workItem from="1752147259549" duration="2000" />
-      <workItem from="1752207965341" duration="350000" />
+      <workItem from="1752207965341" duration="704000" />
     </task>
     <servers />
   </component>
@@ -115,7 +115,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SteganographyMessageHider$SteganographyMessageHider.coverage" NAME="SteganographyMessageHider Coverage Results" MODIFIED="1750150164390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/SteganographyMessageHider$SteganographyMessageHider.coverage" NAME="SteganographyMessageHider Coverage Results" MODIFIED="1752208038442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/SteganographyMessageHider$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1750138975883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

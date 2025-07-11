@@ -45,6 +45,19 @@
 
 ---
 
+## 🖼️ Interface Previews
+
+### 🏠 Home Page
+![Home Page](screenshots/homepage.png)
+
+### ✏️ Encoding Page
+![Encoding Page](screenshots/encoding.png)
+
+### 📖 Decoding Page
+![Decoding Page](screenshots/decoding.png)
+
+---
+
 ## 📦 Installation
 
 ### ⚙️ Prerequisites
