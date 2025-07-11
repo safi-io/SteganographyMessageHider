@@ -162,4 +162,20 @@ Steganrory is a solid foundation for exploring steganography, and future version
 
 > 💡 Contributions are welcome! If you have ideas or want to work on any of these features, feel free to open an issue or pull request.
 
+---
 
+## License
+
+This project is intended solely for **educational purposes** and is not licensed for commercial use.
+
+---
+
+## Contact
+
+For any queries, please feel free to reach out:
+
+**Email:** [m.safi.ullah@outlook.com](mailto:m.safi.ullah@outlook.com)
+
+---
+
+Thank you for exploring!
