@@ -35,6 +35,18 @@
 
 ---
 
+### LSB Technique Explanation
+The Least Significant Bit (LSB) technique is a simple but powerful method for hiding data in images. Every pixel in an image is made up of RGB values, each of these values is stored as an 8-bit binary number.
+LSB works by modifying the last bit (the least significant one) of these binary values. Since the change in the last bit causes almost no visible difference in the image, it allows data to be hidden invisibly.
+
+For example:
+Original Red value = 11100110 (230)
+After encoding = 11100111 (231) — The difference is visually unnoticeable, but now contains part of your message.
+
+This is repeated across many pixels to embed the full message bit by bit.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer     | Technology             |
@@ -48,12 +60,18 @@
 ## 🖼️ Interface Previews
 
 ### 🏠 Home Page
+This the the page that welcomes you when you start the application.
 ![Home Page](screenshots/homepage.png)
 
 ### ✏️ Encoding Page
+On this page, You can upload the picture, and write the text you want to hide in the image.
+For Example
+Image: Pakistan Flag
+Text: Pakistan is my Country.
 ![Encoding Page](screenshots/encoding.png)
 
 ### 📖 Decoding Page
+This page gives you the ability to decode the message by uploading the image.
 ![Decoding Page](screenshots/decoding.png)
 
 ---
