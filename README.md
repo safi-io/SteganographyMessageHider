@@ -80,7 +80,7 @@ This page gives you the ability to decode the message by uploading the image.
 #### Decoded Text:
 - Pakistan is my Country.
 ![Decoding Page](screenshots/decoding.png)
-- 
+
 ### 🔑 Login Interface
 This is the page where you can log in.
 ![Login Page](screenshots/login.png)
