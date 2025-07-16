@@ -1,7 +1,10 @@
-from flask import Flask, request, render_template, send_file, jsonify
-from PIL import Image
+from flask import Flask, request, render_template, send_file, jsonify, redirect, url_for, flash, session
 import os
 from werkzeug.utils import secure_filename
+import mysql.connector
+from functools import wraps
+
+from helper import stego_encode, stego_decode
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -9,119 +12,82 @@ OUTPUT_FOLDER = 'output'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-# === Steganography Logic ===
+app.secret_key = 'your_secret_key_here'  # This is for debugging phase
 
-def stego_encode(image_path, message, output_path):
-    img = Image.open(image_path)
+# === Database Connection ===
+try:
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="hellosafi",
+        database="steganographyFlaskProject"
+    )
+    print("Connection established successfully!")
+except mysql.connector.Error as err:
+    print(f"Error: {err}")
 
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+mycursor = mydb.cursor()
 
-    encoded = img.copy()
-    width, height = img.size
-    message += chr(0)  # Null terminator
-    binary_message = ''.join([format(ord(c), '08b') for c in message])
-    idx = 0
 
-    for y in range(height):
-        for x in range(width):
-            if idx >= len(binary_message):
-                break
+# === Login Required Decorator ===
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            flash("Login required", "error")
+            return redirect(url_for('handle_login'))
+        return f(*args, **kwargs)
 
-            r, g, b = img.getpixel((x, y))
+    return decorated_function
 
-            if idx + 3 <= len(binary_message):
-                r = (r & ~1) | int(binary_message[idx])
-                g = (g & ~1) | int(binary_message[idx + 1])
-                b = (b & ~1) | int(binary_message[idx + 2])
-                idx += 3
-            else:
-                if idx < len(binary_message):
-                    r = (r & ~1) | int(binary_message[idx])
-                    idx += 1
-                if idx < len(binary_message):
-                    g = (g & ~1) | int(binary_message[idx])
-                    idx += 1
-                if idx < len(binary_message):
-                    b = (b & ~1) | int(binary_message[idx])
-                    idx += 1
-
-            encoded.putpixel((x, y), (r, g, b))
-
-    encoded.save(output_path, format='PNG')  # Always save as PNG
-
-def stego_decode(image_path):
-    img = Image.open(image_path)
-
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
-
-    width, height = img.size
-    binary_data = ''
-
-    for y in range(height):
-        for x in range(width):
-            r, g, b = img.getpixel((x, y))
-            binary_data += str(r & 1)
-            binary_data += str(g & 1)
-            binary_data += str(b & 1)
-
-    chars = []
-    for i in range(0, len(binary_data), 8):
-        byte = binary_data[i:i + 8]
-        if len(byte) < 8:
-            break
-        char = chr(int(byte, 2))
-        if char == chr(0):  # Null terminator
-            break
-        chars.append(char)
-
-    return ''.join(chars)
 
 # === Routes ===
 
 @app.route('/')
+@login_required
 def home():
     return render_template('index.html')
 
-@app.route('/encode', methods=['GET'])
-def encode_page():
-    return render_template('encode.html')
 
-@app.route('/encode', methods=['POST'])
+@app.route('/encode', methods=['GET', 'POST'])
+@login_required
 def handle_encode():
+    if request.method == 'GET':
+        return render_template('encode.html')
+
     image_file = request.files['image']
     message = request.form['message']
 
-    # Ensure filename is safe
     filename = secure_filename(image_file.filename)
     base_name, ext = os.path.splitext(filename)
 
-    # Set input and output paths
     input_path = os.path.join(UPLOAD_FOLDER, filename)
     output_filename = f"{base_name}_encoded{ext}"
     output_path = os.path.join(OUTPUT_FOLDER, output_filename)
 
-    # Save original image
     image_file.save(input_path)
-
-    # Perform encoding
     stego_encode(input_path, message, output_path)
 
-    # Send the encoded file with correct download name
+    # Save history
+    sql = "INSERT INTO history (user_id, original_filename, encoded_filename, message) VALUES (%s, %s, %s, %s)"
+    val = (session['user_id'], filename, output_filename, message)
+    mycursor.execute(sql, val)
+    mydb.commit()
+
     return send_file(
         output_path,
-        mimetype='image/png',  # You may want to detect original type
+        mimetype='image/png',
         as_attachment=True,
-        download_name=output_filename  # <-- this sets the correct name
+        download_name=output_filename
     )
 
-@app.route('/decode', methods=['GET'])
-def decode_page():
-    return render_template('decode.html')
 
-@app.route('/decode', methods=['POST'])
+@app.route('/decode', methods=['GET', 'POST'])
+@login_required
 def handle_decode():
+    if request.method == 'GET':
+        return render_template('decode.html')
+
     image_file = request.files['image']
     filename = os.path.splitext(image_file.filename)[0] + '.png'
     input_path = os.path.abspath(os.path.join(UPLOAD_FOLDER, 'to_decode_' + filename))
@@ -130,6 +96,67 @@ def handle_decode():
     hidden_message = stego_decode(input_path)
     return jsonify({'message': hidden_message})
 
-# === Run App ===
+
+@app.route('/login', methods=['GET', 'POST'])
+def handle_login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    mycursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
+    user = mycursor.fetchone()
+
+    if user:
+        session['user_id'] = user[0]
+        session['email'] = user[1]
+        flash("Login successful", "success")
+        return redirect(url_for('home'))
+    else:
+        flash("Invalid email or password", "error")
+        return redirect(url_for('handle_login'))
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def handle_register():
+    if request.method == "GET":
+        return render_template("register.html")
+
+    name = request.form.get("name")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    confirm_password = request.form.get("confirm_password")
+
+    if password != confirm_password:
+        flash("Passwords do not match", "error")
+        return redirect(url_for('handle_register'))
+
+    sql = "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)"
+    val = (name, email, password)
+    mycursor.execute(sql, val)
+    mydb.commit()
+
+    flash("Registration successful. Please login.", "success")
+    return redirect(url_for('handle_login'))
+
+
+@app.route('/logout')
+@login_required
+def handle_logout():
+    session.clear()
+    flash("You have been logged out.", "info")
+    return redirect(url_for('handle_login'))
+
+
+@app.route('/history')
+@login_required
+def view_history():
+    user_id = session['user_id']
+    mycursor.execute("SELECT original_filename, encoded_filename, message FROM history WHERE user_id = %s", (user_id,))
+    history_data = mycursor.fetchall()
+    return render_template("history.html", history=history_data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encode Message in Image</title>
     <!-- Font Awesome for icons -->
-     <link rel="stylesheet" href="{{ url_for('static', filename='encode.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='encode.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <div class="particles"></div> <!-- Particles background -->
 
 <!-- Go Back Button -->
- <a href="{{ url_for('home') }}" class="go-back-btn">
-        <i class="fas fa-arrow-left"></i>
-        <span>Back to Home</span>
-    </a>
+<a href="{{ url_for('home') }}" class="go-back-btn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to Home</span>
+</a>
 
 <div class="container">
     <div class="left-section">
@@ -131,6 +131,7 @@
                 throw new Error('Failed to encode image');
             }
 
+
             const blob = await response.blob();
             const imageUrl = URL.createObjectURL(blob);
 
@@ -166,9 +167,6 @@
         if (messageTimeout) {
             clearTimeout(messageTimeout);
         }
-        messageTimeout = setTimeout(() => {
-            messageBox.classList.remove('show');
-        }, 5000);
     }
 
     let messageTimeout;

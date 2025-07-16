@@ -623,3 +623,34 @@ body {
         font-size: 1.2rem;
     }
 }
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+
+.message-box {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.success {
+    color: #2e7d32; /* Green */
+    background-color: #c8e6c9;
+    border: 1px solid #2e7d32;
+}
+
+.error {
+    color: #c62828; /* Red */
+    background-color: #ffcdd2;
+    border: 1px solid #c62828;
+}

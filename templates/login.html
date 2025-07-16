@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - StegoApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='encode.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="particles"></div> <!-- Particles background -->
+
+
+<div class="container">
+    <div class="left-section">
+        <div class="header">
+            <h1 class="title">Welcome Back</h1>
+            <p class="subtitle">Login to continue encoding your secrets.</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('handle_login') }}">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn-encode-page">
+                <i class="fas fa-sign-in-alt"></i> &nbsp; Login
+            </button>
+
+
+        </form>
+    </div>
+
+    <div class="right-section"
+         style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <div class="result-section">
+            <h3>New Here?</h3>
+            <p class="image-placeholder">
+                No account yet? <a href="{{ url_for('handle_register') }}">Register now</a> to start encoding your
+                secrets securely!
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

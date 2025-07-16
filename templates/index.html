@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
+<div class="top-buttons">
+    <a href="/history" class="btn btn-history">📜 History</a>
+    <a href="/logout" class="btn btn-logout">🔓 Logout</a>
+</div>
 <div class="particles" id="particles"></div>
 
+
 <div class="container">
+
     <div class="header">
         <h1 class="title">Steganography Studio</h1>
         <p class="subtitle">Hide secrets in plain sight</p>
@@ -47,6 +53,7 @@
         <a href="/decode" class="btn btn-decode">
             🔓 Decode Message
         </a>
+
     </div>
 
     <div class="footer">
