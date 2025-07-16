@@ -1,6 +1,6 @@
 # 🕵️‍♂️ Steganography Message Hider
 
-> 🎓 *4th Semester Information Security Project – Image Steganography Tool*
+> 🎓 *CS50 Final Project – Image Steganography Tool*
 
 **Steganography Message Hider** is a web-based steganography tool that allows you to hide and extract secret messages within images. With a clean and responsive user interface powered by HTML, CSS, and JavaScript, and a secure backend built in Python, Steganography makes message concealment simple, private, and elegant.
 
@@ -10,10 +10,13 @@
 
 - 🔍 **Image-Based Steganography**: Encode messages within JPEG or PNG images.
 - 📥 **Encoding and Decoding**: Seamlessly hide or retrieve messages from images.
+- 🗃️ **User Authentication & Session Management**: Secure login and registration with isolated user sessions.
+- 🛢️ **MySQL Database Integration**: All user accounts and history logs are stored in a structured and scalable relational database.
+- 🧾 **Encoding/Decoding History**: Track and view past steganography actions per user.
+- ⚙️ **Offline Capable**: Run locally without internet access or external APIs.
 - 🎨 **Beautiful UI**: Responsive and elegant frontend built with HTML/CSS/JavaScript.
 - 🔐 **Privacy-First**: Fully local processing with no external data transfers.
 - 🧪 **Simple UX**: Just upload an image, type your message, and you're done!
-- ⚙️ **Offline Capable**: Run locally without internet access or external APIs.
 
 ---
 
@@ -48,19 +51,21 @@ This is repeated across many pixels to embed the full message bit by bit.
 ---
 
 ## 🛠️ Tech Stack
+| Layer           | Technology                   |
+|------------------|------------------------------|
+| Frontend         | HTML5, CSS3, JavaScript       |
+| Backend          | Python 3, Flask (with Sessions) |
+| Database         | MySQL (via Flask-MySQL or pymysql) |
+| Authentication   | Flask-Login, Flask Sessions   |
+| Image Processing | Pillow (PIL)                  |
 
-| Layer     | Technology             |
-|-----------|------------------------|
-| Frontend  | HTML5, CSS3, JavaScript |
-| Backend   | Python 3, Flask        |
-| Image Processing | Pillow (PIL)   |
 
 ---
 
 ## 🖼️ Interface Previews
 
 ### 🏠 Home Page
-This the the page that welcomes you when you start the application(Steganography Studio).
+This is the page that welcomes you when you start the application(Steganography Studio).
 ![Home Page](screenshots/homepage.png)
 
 ### ✏️ Encoding Page
@@ -75,6 +80,14 @@ This page gives you the ability to decode the message by uploading the image.
 #### Decoded Text:
 - Pakistan is my Country.
 ![Decoding Page](screenshots/decoding.png)
+- 
+### 🔑 Login Interface
+This is the page where you can log in.
+![Login Page](screenshots/login.png)
+
+### 🆕 Registration Interface
+This is the page where you can register.
+![Registration Page](screenshots/register.png)
 
 ---
 
@@ -88,10 +101,13 @@ This page gives you the ability to decode the message by uploading the image.
 ```bash
 # Clone the repository
 git clone https://github.com/safi-io/SteganographyMessageHider
-cd steganrory
+cd SteganographyMessageHider
 
 # Install dependencies
 pip install flask pillow
+
+# Install additional dependencies for MySQL support
+pip install flask-mysqldb
 
 # Run the app
 python app.py
@@ -101,7 +117,7 @@ http://127.0.0.1:5000
 ```
 ### Project Directory
 ``` bash
-steganrory/
+SteganographyMessageHider/
 ├── static/
 │   ├── index.css
 │   ├── encode.css
@@ -110,8 +126,13 @@ steganrory/
 │   └── index.html
 │   └── decode.html
 │   └── encode.html
-├── uploads/             # Temporary image storage
-├── app.py               # Main Flask application & Encoding/decoding logic
+│   └── login.html
+│   └── register.html
+│   └── histoory.html
+├── uploads/                   # Temporary image storage
+├── app.py                     # Main Flask application
+├── app.py                     # Encoding/decoding logic
+├── ProjectDocumentation.pdf   # It was previously a basic semester project, now I enhanced it as my CS50 Project.
 ├── README.md
 ```
 ## 🔐 Security
@@ -128,16 +149,16 @@ Steganography is built with privacy and security at its core. Here's how your da
   The application does not include cookies, trackers, or analytics scripts, ensuring a clean and private experience.
 
 - 💾 **Offline-Ready**  
-  You can run Steganrory completely offline. Just install the dependencies, start the server, and use it locally.
+  You can run SteganographyMessageHider completely offline. Just install the dependencies, start the server, and use it locally.
 
 - 🔐 **Local-Only Execution**  
   The backend server runs on your local machine, and the frontend interacts only with it, avoiding exposure to the internet.
 
-> ✅ Your messages stay yours. Steganrory ensures data confidentiality and local control.
+> ✅ Your messages stay yours. SteganographyMessageHider ensures data confidentiality and local control.
 
 ## 📈 Future Enhancements
 
-Steganrory is a solid foundation for exploring steganography, and future versions can expand its capabilities even further:
+SteganographyMessageHider is a solid foundation for exploring steganography, and future versions can expand its capabilities even further:
 
 - 🔑 **Password-Protected Encoding**  
   Allow users to encrypt their hidden message with a password before embedding it into the image.

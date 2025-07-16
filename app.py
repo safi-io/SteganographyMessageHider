@@ -12,14 +12,14 @@ OUTPUT_FOLDER = 'output'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
-app.secret_key = 'your_secret_key_here'  # This is for debugging phase
+app.secret_key = '###'
 
 # === Database Connection ===
 try:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="hellosafi",
+        password="###",
         database="steganographyFlaskProject"
     )
     print("Connection established successfully!")
