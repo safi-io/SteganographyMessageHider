@@ -35,6 +35,18 @@
 
 ---
 
+### LSB Technique Explanation
+The Least Significant Bit (LSB) technique is a simple but powerful method for hiding data in images. Every pixel in an image is made up of RGB values, each of these values is stored as an 8-bit binary number.
+LSB works by modifying the last bit (the least significant one) of these binary values. Since the change in the last bit causes almost no visible difference in the image, it allows data to be hidden invisibly.
+
+For example:
+Original Red value = 11100110 (230)
+After encoding = 11100111 (231) — The difference is visually unnoticeable, but now contains part of your message.
+
+This is repeated across many pixels to embed the full message bit by bit.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer     | Technology             |
@@ -48,12 +60,20 @@
 ## 🖼️ Interface Previews
 
 ### 🏠 Home Page
+This the the page that welcomes you when you start the application(Steganography Studio).
 ![Home Page](screenshots/homepage.png)
 
 ### ✏️ Encoding Page
+On this page, You can upload the picture, and write the text you want to hide in the image.
+#### For Example
+- Image: Pakistan Flag
+- Text: Pakistan is my Country.
 ![Encoding Page](screenshots/encoding.png)
 
 ### 📖 Decoding Page
+This page gives you the ability to decode the message by uploading the image.
+#### Decoded Text:
+- Pakistan is my Country.
 ![Decoding Page](screenshots/decoding.png)
 
 ---
@@ -142,4 +162,20 @@ Steganrory is a solid foundation for exploring steganography, and future version
 
 > 💡 Contributions are welcome! If you have ideas or want to work on any of these features, feel free to open an issue or pull request.
 
+---
 
+## License
+
+This project is intended solely for **educational purposes** and is not licensed for commercial use.
+
+---
+
+## Contact
+
+For any queries, please feel free to reach out:
+
+**Email:** [m.safi.ullah@outlook.com](mailto:m.safi.ullah@outlook.com)
+
+---
+
+Thank you for exploring!
