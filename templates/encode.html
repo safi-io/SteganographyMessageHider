@@ -1,176 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encode Message in Image</title>
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='encode.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-<div class="particles"></div> <!-- Particles background -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/encode.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+  <div class="particles" id="particles"></div>
+    <!-- Particles background -->
 
-<!-- Go Back Button -->
-<a href="{{ url_for('home') }}" class="go-back-btn">
-    <i class="fas fa-arrow-left"></i>
-    <span>Back to Home</span>
-</a>
+    <!-- Go Back Button -->
+    <a href="{{ url_for('main.home') }}" class="go-back-btn">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
 
-<div class="container">
-    <div class="left-section">
+    <div class="container">
+      <div class="left-section">
         <div class="header">
-            <h1 class="title">Encode Your Secret</h1>
-            <p class="subtitle">Hide a message within an image using steganography.</p>
+          <h1 class="title">Encode Your Secret</h1>
+          <p class="subtitle">
+            Hide a message within an image using steganography.
+          </p>
         </div>
         <div class="form-group">
-            <label for="image-upload">Select Image</label>
-            <input type="file" id="image-upload" accept="image/*">
-            <label for="image-upload" class="custom-file-upload">
-                <i class="fas fa-upload"></i>
-                <span>Choose Image File</span>
-            </label>
-            <p id="file-name">No file chosen</p>
+          <label for="image-upload">Select Image</label>
+          <input type="file" id="image-upload" accept="image/*" multiple />
+          <label for="image-upload" class="custom-file-upload">
+            <i class="fas fa-upload"></i>
+            <span>Choose Image File</span>
+          </label>
+          <p id="file-name">No file chosen</p>
         </div>
         <div class="form-group">
-            <label for="message-input">Message to Hide</label>
-            <textarea id="message-input" placeholder="Enter your secret message here..."></textarea>
+          <label for="message-input">Message to Hide</label>
+          <textarea
+            id="message-input"
+            placeholder="Enter your secret message here..."
+          ></textarea>
         </div>
         <button id="encode-btn" class="btn-encode-page">
-            <i class="fas fa-eye-slash"></i> &nbsp; Encode Message
+          <i class="fas fa-eye-slash"></i> &nbsp; Encode Message
         </button>
         <div id="message-box" class="message-box"></div>
-    </div>
+      </div>
 
-    <div class="right-section">
+      <div class="right-section">
         <div class="result-section">
-            <h3>Your Encoded Image</h3>
-            <div id="encoded-image-container">
-                <img id="encoded-image" src="" alt="Encoded Image">
-            </div>
-            <p id="image-placeholder" class="image-placeholder">
-                Upload an image and enter a message to generate your secret image.
-            </p>
-            <div id="loading-indicator" class="loading" style="display: none;"></div>
+          <h3>Your Encoded Image</h3>
+          <div id="encoded-image-container">
+            <img id="encoded-image" src="" alt="Encoded Image" />
+          </div>
+          <p id="image-placeholder" class="image-placeholder">
+            Upload an image and enter a message to generate your secret image.
+          </p>
+          <div
+            id="loading-indicator"
+            class="loading"
+            style="display: none"
+          ></div>
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-    const particlesContainer = document.querySelector('.particles');
-    const numParticles = 30;
-
-    for (let i = 0; i < numParticles; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = Math.random() * 100 + 'vh';
-        const size = Math.random() * 4 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        particle.style.animationDuration = Math.random() * 8 + 6 + 's';
-        particlesContainer.appendChild(particle);
-    }
-
-    const imageUpload = document.getElementById('image-upload');
-    const fileNameDisplay = document.getElementById('file-name');
-    const messageInput = document.getElementById('message-input');
-    const encodeBtn = document.getElementById('encode-btn');
-    const messageBox = document.getElementById('message-box');
-    const encodedImageContainer = document.getElementById('encoded-image-container');
-    const encodedImage = document.getElementById('encoded-image');
-    const imagePlaceholder = document.getElementById('image-placeholder');
-    const loadingIndicator = document.getElementById('loading-indicator');
-
-    let selectedFile = null;
-
-    imageUpload.addEventListener('change', (event) => {
-        selectedFile = event.target.files[0];
-        if (selectedFile) {
-            fileNameDisplay.textContent = selectedFile.name;
-            showMessage(`Image selected: ${selectedFile.name}`, 'success');
-            imagePlaceholder.style.display = 'block';
-            encodedImageContainer.style.display = 'none';
-        } else {
-            fileNameDisplay.textContent = 'No file chosen';
-            showMessage('No image selected.', 'error');
-        }
-    });
-
-    encodeBtn.addEventListener('click', async () => {
-        const messageText = messageInput.value.trim();
-
-        if (!selectedFile) {
-            showMessage('Please select an image to encode.', 'error');
-            return;
-        }
-
-        if (!messageText) {
-            showMessage('Please enter a message to hide.', 'error');
-            return;
-        }
-
-        loadingIndicator.style.display = 'block';
-        encodedImageContainer.style.display = 'none';
-        imagePlaceholder.style.display = 'none';
-        showMessage('Encoding message...', 'info');
-        encodeBtn.disabled = true;
-
-        const formData = new FormData();
-        formData.append('image', selectedFile);
-        formData.append('message', messageText);
-
-        try {
-            const response = await fetch('/encode', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to encode image');
-            }
-
-
-            const blob = await response.blob();
-            const imageUrl = URL.createObjectURL(blob);
-
-            encodedImage.src = imageUrl;
-            encodedImageContainer.style.display = 'block';
-            imagePlaceholder.style.display = 'none';
-            showMessage('Message encoded successfully!', 'success');
-
-            // Automatically download the encoded image
-            const downloadLink = document.createElement('a');
-            downloadLink.href = imageUrl;
-            downloadLink.download = 'encoded_image.png';
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-
-        } catch (error) {
-            console.error('Encoding error:', error);
-            showMessage('An error occurred during encoding. Please try again.', 'error');
-            imagePlaceholder.style.display = 'block';
-        } finally {
-            loadingIndicator.style.display = 'none';
-            encodeBtn.disabled = false;
-        }
-    });
-
-    function showMessage(message, type) {
-        messageBox.textContent = message;
-        messageBox.className = 'message-box show';
-        if (type) {
-            messageBox.classList.add(type);
-        }
-        if (messageTimeout) {
-            clearTimeout(messageTimeout);
-        }
-    }
-
-    let messageTimeout;
-</script>
-
-</body>
+    <script src="{{ url_for('static', filename='js/encode.js') }}"></script>
+  </body>
 </html>
