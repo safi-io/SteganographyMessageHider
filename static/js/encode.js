@@ -56,7 +56,7 @@ encodeBtn.addEventListener("click", async () => {
     const response = await fetch("/encode", { method: "POST", body: formData });
     const { task_ids, output_files } = await response.json();
 
-    // Step 2: poll every 2s until all are done
+    // Step 2: poll every 1s until all are done
     const checkTasks = async () => {
       const results = await Promise.all(
         task_ids.map((id) => fetch(`/task-status/${id}`).then((r) => r.json()))
@@ -78,11 +78,11 @@ encodeBtn.addEventListener("click", async () => {
         link.click();
         document.body.removeChild(link);
 
-  showMessage("All images encoded and downloaded!", "success");
-  if (loadingIndicator) loadingIndicator.style.display = "none";
-  if (encodeBtn) encodeBtn.disabled = false;
+        showMessage("All images encoded and downloaded!", "success");
+        if (loadingIndicator) loadingIndicator.style.display = "none";
+        if (encodeBtn) encodeBtn.disabled = false;
       } else {
-        setTimeout(checkTasks, 2000); // keep polling
+        setTimeout(checkTasks, 1000); // keep polling
       }
     };
 
@@ -93,8 +93,8 @@ encodeBtn.addEventListener("click", async () => {
       "An error occurred during encoding. Please try again.",
       "error"
     );
-  if (loadingIndicator) loadingIndicator.style.display = "none";
-  if (encodeBtn) encodeBtn.disabled = false;
+    if (loadingIndicator) loadingIndicator.style.display = "none";
+    if (encodeBtn) encodeBtn.disabled = false;
   }
 });
 

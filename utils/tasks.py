@@ -1,6 +1,7 @@
 import os
 from celery import Celery
 from helper import stego_encode
+import time
 
 # Initialize Celery app
 celery = Celery(
@@ -12,5 +13,6 @@ celery = Celery(
 @celery.task
 def encode_image_task(input_path, message, output_path):
     """Encodes a message into an image and saves the output."""
+    time.sleep(3) # Simulate a time-consuming task
     stego_encode(input_path, message, output_path)
     return output_path
