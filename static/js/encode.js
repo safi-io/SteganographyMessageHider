@@ -39,11 +39,11 @@ encodeBtn.addEventListener("click", async () => {
     return;
   }
 
-  loadingIndicator.style.display = "block";
-  encodedImageContainer.style.display = "none";
-  imagePlaceholder.style.display = "none";
+  if (loadingIndicator) loadingIndicator.style.display = "block";
+  if (encodedImageContainer) encodedImageContainer.style.display = "none";
+  if (imagePlaceholder) imagePlaceholder.style.display = "none";
   showMessage("Encoding message...", "info");
-  encodeBtn.disabled = true;
+  if (encodeBtn) encodeBtn.disabled = true;
 
   const formData = new FormData();
   selectedFiles.forEach((file) => {
@@ -78,9 +78,9 @@ encodeBtn.addEventListener("click", async () => {
         link.click();
         document.body.removeChild(link);
 
-        showMessage("All images encoded and downloaded!", "success");
-        loadingIndicator.style.display = "none";
-        encodeBtn.disabled = false;
+  showMessage("All images encoded and downloaded!", "success");
+  if (loadingIndicator) loadingIndicator.style.display = "none";
+  if (encodeBtn) encodeBtn.disabled = false;
       } else {
         setTimeout(checkTasks, 2000); // keep polling
       }
@@ -93,8 +93,8 @@ encodeBtn.addEventListener("click", async () => {
       "An error occurred during encoding. Please try again.",
       "error"
     );
-    loadingIndicator.style.display = "none";
-    encodeBtn.disabled = false;
+  if (loadingIndicator) loadingIndicator.style.display = "none";
+  if (encodeBtn) encodeBtn.disabled = false;
   }
 });
 
