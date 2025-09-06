@@ -1,449 +1,265 @@
-/* Universal adjustments for a cleaner base */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Background */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; /* Enhanced font stack */
-    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Softer, more modern gradient */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Keep overflow hidden for particle effect */
-    position: relative;
-    color: #333; /* Default text color for better contrast with light backgrounds */
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Particle adjustments for subtlety */
+/* Particle Container */
 .particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1; /* Ensure particles are behind the main container */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .particle {
-    position: absolute;
-    width: 4px; /* Smaller particles */
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1); /* Even more subtle */
-    border-radius: 50%;
-    animation: float 8s ease-in-out infinite; /* Slower, smoother float */
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-40px) rotate(180deg);
-        opacity: 0.7;
-    }
-    /* More movement, subtle opacity change */
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-40px);
+    opacity: 0.6;
+  }
 }
 
-/* Container refinements */
+/* Container */
 .container {
-    background: rgba(255, 255, 255, 0.08); /* Lighter frosted glass */
-    backdrop-filter: blur(20px); /* Slightly less blur */
-    border-radius: 24px; /* Slightly less rounded corners */
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Thinner, more subtle border */
-    padding: 2.5rem 3.5rem; /* Adjusted padding for a more compact feel */
-    max-width: 960px; /* Increased max-width for more content space */
-    width: 95%;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Softer shadow */
-    animation: slideIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother animation curve */
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3.5rem; /* Adjusted gap */
-    align-items: center;
-    min-height: 380px; /* Slightly taller min-height */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 95%;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+  padding: 4rem 5rem;
+  max-width: 1100px;
+  min-height: 600px;
+  border-radius: 28px;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98); /* Less drastic initial scale */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.left-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-right: 1.5rem; /* Add some padding to the right for balance */
-}
-
-.right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; /* Reduced gap */
-}
-
-.header {
-    margin-bottom: 1.5rem; /* Reduced margin */
-}
-
+/* Header */
 .title {
-    font-size: 2.8rem; /* Slightly smaller, more balanced font size */
-    font-weight: 800; /* Maintained strong weight */
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%); /* Subtler white gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.8rem; /* Adjusted margin */
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Softer text shadow */
-    line-height: 1.2;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff, #d4d4d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.6rem;
 }
 
 .subtitle {
-    color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
-    font-size: 1.3rem; /* Slightly smaller */
-    font-weight: 400; /* Lighter weight for balance */
-    letter-spacing: 0.3px; /* Slightly tighter letter spacing */
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
 }
 
+/* Icon */
 .icon-container {
-    width: 120px; /* Slightly smaller icon container */
-    height: 120px;
-    margin: 0 auto 1.2rem;
-    position: relative;
-    animation: pulse 2.5s ease-in-out infinite; /* Slower pulse */
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .icon {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%); /* A new, vibrant but modern gradient */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem; /* Adjusted icon size */
-    color: white;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); /* Softer shadow */
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Thinner border */
-}
-
-.icon::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent); /* Softer shine */
-    animation: shine 4s ease-in-out infinite; /* Slower shine */
+  font-size: 3rem;
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    /* More subtle pulse */
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }
 
-@keyframes shine {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
+/* Features Grid */
 .features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem; /* Tighter gap for features */
-    margin-bottom: 2rem; /* Reduced margin */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .feature {
-    background: rgba(255, 255, 255, 0.1); /* Lighter feature background */
-    border-radius: 16px; /* Slightly less rounded */
-    padding: 1.5rem 0.8rem; /* Reduced padding */
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Thinner border */
-    transition: all 0.3s ease; /* Faster, smoother transition */
-    text-align: center;
-    backdrop-filter: blur(10px); /* Less blur */
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 14px;
+  transition: all 0.3s ease;
 }
 
 .feature:hover {
-    background: rgba(255, 255, 255, 0.18); /* Slightly more visible hover */
-    transform: translateY(-5px); /* Less dramatic lift */
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Softer hover shadow */
-    border-color: rgba(255, 255, 255, 0.3); /* Softer hover border */
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-5px);
 }
 
 .feature-icon {
-    font-size: 2.2rem; /* Slightly smaller icon */
-    margin-bottom: 0.8rem; /* Reduced margin */
-    display: block;
-    color: rgba(255, 255, 255, 0.9); /* Consistent icon color */
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15)); /* Softer drop shadow */
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .feature-text {
-    color: rgba(255, 255, 255, 0.9); /* Consistent text color */
-    font-size: 1rem; /* Slightly smaller font size */
-    font-weight: 500; /* Lighter weight */
-    letter-spacing: 0.2px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
+/* Buttons */
 .buttons {
-    display: flex;
-    gap: 1.5rem; /* Reduced gap */
+  display: flex;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn {
-    flex: 1;
-    padding: 1.2rem 1.8rem; /* Reduced padding for a more compact button */
-    border: none;
-    border-radius: 20px; /* Slightly less rounded */
-    font-size: 1.1rem; /* Slightly smaller font */
-    font-weight: 600; /* Slightly lighter weight */
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    backdrop-filter: blur(8px); /* Less blur */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Thinner border */
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  padding: 1rem 1.8rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
-    transform: translateY(-4px); /* Less dramatic lift */
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25); /* Softer hover shadow */
-    border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
-.btn:active {
-    transform: translateY(-1px); /* More subtle active state */
+.btn.primary {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
 }
 
-.btn-encode {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* New, fresh gradient */
+.btn.secondary {
+  background: linear-gradient(135deg, #f02fc2, #6094ea);
 }
 
-.btn-decode {
-    background: linear-gradient(135deg, #f02fc2 0%, #6094ea 100%); /* New, fresh gradient */
+.btn.small {
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); /* Softer shine */
-    transition: left 0.5s ease-in-out; /* Faster shine */
+.btn.danger {
+  background: linear-gradient(135deg, #f25c54, #e04a44);
 }
 
-.btn:hover::before {
-    left: 100%;
-}
-
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.15); /* Lighter ripple */
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.5s ease, height 0.5s ease; /* Faster ripple */
-}
-
-.btn:hover::after {
-    width: 250px; /* Slightly smaller ripple */
-    height: 250px;
-}
-
+/* Footer */
 .footer {
-    color: rgba(255, 255, 255, 0.7); /* Slightly less opaque */
-    font-size: 0.9rem; /* Smaller font size */
-    font-weight: 400; /* Lighter weight */
-    margin-top: 1.5rem; /* Reduced margin */
-    text-align: center;
-    letter-spacing: 0.2px;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive design adjustments for a more fluid experience */
-@media (max-width: 1024px) {
-    .container {
-        max-width: 800px; /* Adjusted max-width */
-        padding: 2.5rem 3rem; /* Slightly reduced padding */
-        gap: 3rem; /* Adjusted gap */
-    }
-
-    .title {
-        font-size: 2.5rem;
-    }
-
-    .icon-container {
-        width: 110px;
-        height: 110px;
-    }
-
-    .icon {
-        font-size: 3rem;
-    }
+.footer a {
+  color: #fff;
+  text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem; /* Adjusted gap */
-        padding: 2.5rem;
-        max-width: 500px; /* Adjusted max-width */
-    }
-
-    .left-section {
-        padding-right: 0; /* Remove padding */
-    }
-
-    .features {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem; /* Tighter gap */
-    }
-
-    .buttons {
-        flex-direction: column;
-        gap: 1.2rem; /* Tighter gap */
-    }
-
-    .title {
-        font-size: 2.2rem;
-    }
-
-    .subtitle {
-        font-size: 1.1rem;
-    }
-
-    .btn {
-        padding: 1.2rem 1.5rem;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .features {
-        grid-template-columns: 1fr;
-        gap: 0.8rem; /* Even tighter gap */
-    }
-
-    .container {
-        padding: 1.8rem; /* Reduced padding */
-        gap: 1.8rem;
-    }
-
-    .feature {
-        padding: 1.2rem 0.8rem; /* Reduced padding */
-    }
-
-    .feature-icon {
-        font-size: 1.8rem;
-    }
-
-    .title {
-        font-size: 1.8rem;
-    }
-
-    .subtitle {
-        font-size: 1rem;
-    }
-
-    .icon-container {
-        width: 100px;
-        height: 100px;
-    }
-
-    .icon {
-        font-size: 2.8rem;
-    }
-}
-
-/* Loading animation (kept mostly similar, as it's functional) */
-.loading {
-    display: inline-block;
-    width: 20px; /* Slightly smaller */
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3); /* Thinner border */
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 0.8s ease-in-out infinite; /* Slightly faster spin */
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(3.5); /* Slightly smaller ripple effect */
-        opacity: 0;
-    }
-}
-
+/* Top Buttons */
 .top-buttons {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    display: flex;
-    gap: 10px;
-    z-index: 1000;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
 }
 
-.btn-history,
-.btn-logout {
-    padding: 10px 16px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    color: white;
-    background-color: #5e60ce;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+.btn.primary,
+.btn.secondary {
+  font-size: 1.5rem; /* larger text */
+  padding: 1.8rem 3.5rem; /* taller + wider */
+  border-radius: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
 }
 
-.btn-logout {
-    background-color: #f25c54;
+/* Extra hover effect */
+.btn.primary:hover,
+.btn.secondary:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
 }
 
-.btn-history:hover {
-    background-color: #4a4fc1;
+/* Top Buttons Container */
+.top-buttons {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  z-index: 100;
 }
 
-.btn-logout:hover {
-    background-color: #e04a44;
+/* Large Button Base */
+.top-buttons .btn {
+  font-size: 1.2rem; /* bigger text */
+  padding: 1rem 2rem; /* larger button */
+  border-radius: 50px; /* pill-shaped */
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* History Button */
+.top-buttons .btn.small {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5); /* teal/blue */
+}
+
+/* Logout Button */
+.top-buttons .btn.danger {
+  background: linear-gradient(135deg, #ff4e50, #f9d423); /* red/orange */
+}
+
+/* Hover Effects */
+.top-buttons .btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }

@@ -10,57 +10,60 @@
     />
   </head>
   <body>
+    <!-- Floating top-right buttons -->
     <div class="top-buttons">
-      <a href="/history" class="btn btn-history">📜 History</a>
-      <a href="/logout" class="btn btn-logout">🔓 Logout</a>
+      <a href="/history" class="btn small">📜 History</a>
+      <a href="/logout" class="btn small danger">🔓 Logout</a>
     </div>
-    <div class="particles" id="particles"></div>
 
-    <div class="container">
-      <div class="header">
+    <!-- Particle Background -->
+    <div id="particles" class="particles"></div>
+
+    <!-- Main Content -->
+    <main class="container">
+      <header class="header">
         <h1 class="title">Steganography Studio</h1>
         <p class="subtitle">Hide secrets in plain sight</p>
-      </div>
+      </header>
 
+      <!-- Icon animation -->
       <div class="icon-container">
         <div class="icon">🕵️‍♂️</div>
       </div>
 
-      <div class="features">
+      <!-- Features Grid -->
+      <section class="features">
         <div class="feature">
           <div class="feature-icon">🔐</div>
-          <div class="feature-text">Secure Encoding</div>
+          <p class="feature-text">Secure Encoding</p>
         </div>
         <div class="feature">
           <div class="feature-icon">🔍</div>
-          <div class="feature-text">Smart Detection</div>
+          <p class="feature-text">Smart Detection</p>
         </div>
         <div class="feature">
           <div class="feature-icon">⚡</div>
-          <div class="feature-text">Lightning Fast</div>
+          <p class="feature-text">Lightning Fast</p>
         </div>
         <div class="feature">
           <div class="feature-icon">🛡️</div>
-          <div class="feature-text">Military Grade</div>
+          <p class="feature-text">Military Grade</p>
         </div>
-      </div>
+      </section>
 
+      <!-- Main Buttons -->
       <div class="buttons">
-        <a href="/encode" class="btn btn-encode"> 🔐 Encode Message </a>
-        <a href="/decode" class="btn btn-decode"> 🔓 Decode Message </a>
+        <a href="/encode" class="btn primary">🔐 Encode Message</a>
+        <a href="/decode" class="btn secondary">🔓 Decode Message</a>
       </div>
 
-      <div class="footer">
+      <!-- Footer -->
+      <footer class="footer">
         Built with passion for digital privacy —
-        <a
-          href="https://safikhan.me"
-          target="_blank"
-          style="color: #fff; text-decoration: underline"
-          >safikhan.me</a
-        ><br />
+        <a href="https://github.com/safi-io" target="_blank">github/safi-io</a><br />
         &copy; 2025 Safi Khan. All rights reserved.
-      </div>
-    </div>
+      </footer>
+    </main>
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>

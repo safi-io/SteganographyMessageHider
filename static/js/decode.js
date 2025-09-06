@@ -1,6 +1,5 @@
-// Generate random particles for the background
 const particlesContainer = document.querySelector(".particles");
-const numParticles = 30; // Adjust number of particles
+const numParticles = 40; 
 
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement("div");
@@ -9,12 +8,11 @@ for (let i = 0; i < numParticles; i++) {
   particle.style.left = Math.random() * 100 + "vw";
   particle.style.top = Math.random() * 100 + "vh";
   // Random size variation
-  const size = Math.random() * 4 + 2; // Size between 2px and 6px
+  const size = Math.random() * 4 + 5; 
   particle.style.width = size + "px";
   particle.style.height = size + "px";
-  // Random animation delay and duration
   particle.style.animationDelay = Math.random() * 5 + "s";
-  particle.style.animationDuration = Math.random() * 8 + 6 + "s"; // Duration between 6s and 14s
+  particle.style.animationDuration = Math.random() * 8 + 6 + "s"; 
   particlesContainer.appendChild(particle);
 }
 

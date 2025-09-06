@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Encode Message in Image</title>
-    <!-- Font Awesome for icons -->
+    <title>Encode Message</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/encode.css') }}"
@@ -15,32 +14,39 @@
     />
   </head>
   <body>
-  <div class="particles" id="particles"></div>
-    <!-- Particles background -->
+    <div class="particles" id="particles"></div>
 
-    <!-- Go Back Button -->
+    <!-- Back Button -->
     <a href="{{ url_for('main.home') }}" class="go-back-btn">
       <i class="fas fa-arrow-left"></i>
       <span>Back to Home</span>
     </a>
 
+    <!-- Top Navigation -->
+    <div class="top-buttons">
+      <a href="/history" class="btn history">📜 History</a>
+      <a href="/logout" class="btn danger">🔓 Logout</a>
+    </div>
+
     <div class="container">
-      <div class="left-section">
-        <div class="header">
-          <h1 class="title">Encode Your Secret</h1>
-          <p class="subtitle">
-            Hide a message within an image using steganography.
-          </p>
-        </div>
+      <div class="encode-box">
+        <h1 class="title"><i class="fas fa-lock"></i> Encode Your Secret</h1>
+        <p class="subtitle">
+          Hide a single message inside one or multiple images using
+          steganography.
+        </p>
+
+        <!-- File Upload -->
         <div class="form-group">
-          <label for="image-upload">Select Image</label>
+          <label for="image-upload">Select Images</label>
           <input type="file" id="image-upload" accept="image/*" multiple />
           <label for="image-upload" class="custom-file-upload">
-            <i class="fas fa-upload"></i>
-            <span>Choose Image File</span>
+            <i class="fas fa-upload"></i> Choose Image Files
           </label>
-          <p id="file-name">No file chosen</p>
+          <p id="file-name">No files chosen</p>
         </div>
+
+        <!-- Message Input -->
         <div class="form-group">
           <label for="message-input">Message to Hide</label>
           <textarea
@@ -48,26 +54,15 @@
             placeholder="Enter your secret message here..."
           ></textarea>
         </div>
-        <button id="encode-btn" class="btn-encode-page">
-          <i class="fas fa-eye-slash"></i> &nbsp; Encode Message
-        </button>
-        <div id="message-box" class="message-box"></div>
-      </div>
 
-      <div class="right-section">
-        <div class="result-section">
-          <h3>Your Encoded Image</h3>
-          <div id="encoded-image-container">
-            <img id="encoded-image" src="" alt="Encoded Image" />
-          </div>
-          <p id="image-placeholder" class="image-placeholder">
-            Upload an image and enter a message to generate your secret image.
-          </p>
-          <div
-            id="loading-indicator"
-            class="loading"
-            style="display: none"
-          ></div>
+        <!-- Encode Button -->
+        <button id="encode-btn" class="btn-encode big-btn">
+          <i class="fas fa-eye-slash"></i> Encode Message
+        </button>
+
+        <!-- Result / Status Box -->
+        <div id="message-box" class="message-box">
+          Ready to encode. Select images and type your secret message.
         </div>
       </div>
     </div>
