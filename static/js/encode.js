@@ -42,7 +42,7 @@ encodeBtn.addEventListener("click", async () => {
   if (loadingIndicator) loadingIndicator.style.display = "block";
   if (encodedImageContainer) encodedImageContainer.style.display = "none";
   if (imagePlaceholder) imagePlaceholder.style.display = "none";
-  showMessage("Encoding message...", "info");
+  showMessage("Encoding message.", "info");
   if (encodeBtn) encodeBtn.disabled = true;
 
   const formData = new FormData();
