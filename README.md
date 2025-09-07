@@ -235,7 +235,7 @@ SteganographyMessageHider is built for privacy and security:
 
 ## Contact
 
-For any queries, please reach out:
+For any queries, please reach out at:
 
 **Email:** [m.safi.ullah@outlook.com](mailto:m.safi.ullah@outlook.com)
 
