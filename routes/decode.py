@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, jsonify
 import os
-from helper import stego_decode
+from utils.helper import stego_decode
 from utils.login_decorator import login_required
 
 UPLOAD_FOLDER = 'uploads'

@@ -1,6 +1,6 @@
 import os
 from celery import Celery
-from helper import stego_encode
+from utils.helper import stego_encode
 import time
 
 # Initialize Celery app
